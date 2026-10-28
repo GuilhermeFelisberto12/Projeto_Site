@@ -1,0 +1,530 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Guilherme Felisberto</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Layout: página única de portfólio, bilíngue (PT/EN). Hero com terminal à direita, linha do tempo de experiência, grade de habilidades agrupadas. */
+:root {
+  --bg: #EDF0F3;
+  --surface: #F8FAFB;
+  --fg: #0F1A24;
+  --muted: #4A5866;
+  --line: #CDD5DC;
+  --accent: #0A6B72;
+  --accent-ink: #FFFFFF;
+  --signal: #8F5A0A;
+  --term-bg: #0F1820;
+  --term-fg: #D5E0E8;
+  --term-dim: #7F93A3;
+  --term-accent: #6FD3D8;
+  --font-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --font-body: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0C131A;
+    --surface: #131C25;
+    --fg: #E4EAF0;
+    --muted: #9AA8B6;
+    --line: #26323E;
+    --accent: #4FC3C9;
+    --accent-ink: #06161A;
+    --signal: #E3A94A;
+    --term-bg: #090F14;
+    --term-fg: #D5E0E8;
+    --term-dim: #7F93A3;
+    --term-accent: #6FD3D8;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0C131A;
+  --surface: #131C25;
+  --fg: #E4EAF0;
+  --muted: #9AA8B6;
+  --line: #26323E;
+  --accent: #4FC3C9;
+  --accent-ink: #06161A;
+  --signal: #E3A94A;
+  --term-bg: #090F14;
+  --term-fg: #D5E0E8;
+  --term-dim: #7F93A3;
+  --term-accent: #6FD3D8;
+  color-scheme: dark;
+}
+
+/* Idioma: PT por padrão, EN quando data-lang="en" */
+html:not([data-lang="en"]) [data-l="en"],
+html[data-lang="en"] [data-l="pt"] { display: none !important; }
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  padding-block: 0 48px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0 0 auto;
+  height: env(safe-area-inset-top, 0px);
+  z-index: 10;
+  background: var(--bg);
+}
+.wrap { max-width: 1080px; margin: 0 auto; }
+a { color: var(--accent); text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+/* Cabeçalho */
+.top {
+  position: sticky;
+  top: env(safe-area-inset-top, 0px);
+  z-index: 9;
+  background: var(--bg);
+  border-bottom: 1px solid var(--line);
+}
+.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 12px 20px; padding-block: 12px; flex-wrap: wrap; }
+.brand { font-family: var(--font-mono); font-size: 14px; font-weight: 500; color: var(--fg); text-decoration: none; }
+.brand span { color: var(--accent); }
+nav { display: flex; gap: 20px; flex-wrap: wrap; margin-left: auto; }
+nav a { font-size: 14px; color: var(--muted); text-decoration: none; padding-block: 2px; }
+nav a:hover { color: var(--fg); }
+.lang { display: inline-flex; border: 1px solid var(--line); border-radius: 4px; overflow: hidden; }
+.lang button {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  padding: 5px 11px;
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+}
+.lang button + button { border-left: 1px solid var(--line); }
+.lang button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); }
+
+/* Hero */
+.hero { padding-block: 72px 64px; display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: 48px; align-items: center; }
+.eyebrow { font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin: 0 0 20px; }
+h1 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(2.5rem, 6.4vw, 4.5rem);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  margin: 0 0 12px;
+  text-wrap: balance;
+}
+.fullname { font-family: var(--font-mono); font-size: 14px; color: var(--muted); margin: 0 0 24px; overflow-wrap: anywhere; }
+.lead { font-size: 18px; max-width: 54ch; margin: 0 0 32px; color: var(--fg); }
+.actions { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn {
+  display: inline-block;
+  font-weight: 600;
+  font-size: 15px;
+  padding: 12px 20px;
+  border-radius: 4px;
+  text-decoration: none;
+  border: 1px solid var(--accent);
+}
+.btn.primary { background: var(--accent); color: var(--accent-ink); }
+.btn.ghost { background: transparent; color: var(--accent); }
+.btn:hover { filter: brightness(1.08); }
+
+.term {
+  background: var(--term-bg);
+  color: var(--term-fg);
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  font-family: var(--font-mono);
+  font-size: 13.5px;
+  line-height: 1.7;
+  overflow: hidden;
+  min-width: 0;
+}
+.term-bar { display: flex; align-items: center; gap: 8px; padding: 10px 14px; border-bottom: 1px solid #22303b; color: var(--term-dim); font-size: 12px; }
+.term-bar i { width: 9px; height: 9px; border-radius: 50%; background: #2c3b47; display: inline-block; }
+.term-bar span { margin-left: 6px; }
+.term-body { padding: 16px 18px 20px; overflow-x: auto; }
+.term p { margin: 0; white-space: pre-wrap; overflow-wrap: anywhere; }
+.term .ps { color: var(--term-accent); }
+.term .out { color: var(--term-fg); margin-bottom: 10px; }
+.cursor { display: inline-block; width: 8px; height: 1em; background: var(--term-accent); vertical-align: text-bottom; animation: blink 1.1s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+
+/* Seções */
+section { padding-block: 64px; border-top: 1px solid var(--line); }
+.sec-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 32px; flex-wrap: wrap; }
+h2 { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.7rem, 3.6vw, 2.3rem); letter-spacing: -0.01em; line-height: 1.15; margin: 0; text-wrap: balance; }
+.sec-tag { font-family: var(--font-mono); font-size: 13px; color: var(--accent); }
+
+.about { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: 48px; }
+.about p { margin: 0 0 16px; max-width: 65ch; }
+.facts { margin: 0; display: grid; gap: 16px; align-content: start; }
+.facts div { border-left: 2px solid var(--accent); padding-left: 14px; }
+.facts dt { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.facts dd { margin: 2px 0 0; }
+
+/* Linha do tempo */
+.timeline { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
+.job { display: grid; grid-template-columns: 190px minmax(0, 1fr); gap: 32px; padding-block: 28px; border-top: 1px solid var(--line); }
+.job:first-child { border-top: 0; padding-top: 0; }
+.when { font-family: var(--font-mono); font-size: 13px; color: var(--muted); }
+.when b { display: block; font-weight: 500; color: var(--fg); font-size: 14px; }
+.now { display: inline-block; margin-top: 8px; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--signal); border: 1px solid var(--signal); padding: 1px 8px; border-radius: 99px; }
+.job h3 { font-family: var(--font-display); font-weight: 700; font-size: 1.35rem; line-height: 1.25; margin: 0; }
+.job .org { color: var(--muted); margin: 2px 0 14px; font-size: 15px; }
+.job ul { margin: 0; padding-left: 18px; display: grid; gap: 8px; max-width: 70ch; }
+.job li::marker { color: var(--accent); }
+
+/* Habilidades */
+.skills { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.group { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 22px; min-width: 0; }
+.group.new { border-color: var(--accent); }
+.group h3 { font-family: var(--font-mono); font-size: 13px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); margin: 0 0 14px; }
+.chips { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.chips li { font-size: 14px; border: 1px solid var(--line); border-radius: 4px; padding: 4px 10px; background: var(--bg); }
+
+/* Formação e certificações */
+.cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 48px; }
+.cols h3 { font-family: var(--font-mono); font-size: 13px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin: 0 0 18px; }
+.rows { list-style: none; margin: 0; padding: 0; }
+.rows li { padding-block: 14px; border-top: 1px solid var(--line); }
+.rows li:first-child { border-top: 0; padding-top: 0; }
+.rows strong { display: block; font-weight: 600; }
+.rows .meta { display: block; color: var(--muted); font-size: 15px; }
+.rows code { font-family: var(--font-mono); font-size: 12.5px; color: var(--muted); overflow-wrap: anywhere; }
+
+/* Contato */
+.contact { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 20px; min-width: 0; }
+.card small { display: block; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+.card p { margin: 0 0 12px; overflow-wrap: anywhere; user-select: all; }
+.copy { font: inherit; font-size: 13px; font-weight: 500; background: transparent; color: var(--accent); border: 1px solid var(--line); border-radius: 4px; padding: 5px 12px; cursor: pointer; }
+.copy:hover, .linkbtn:hover { border-color: var(--accent); }
+.linkbtn { display: inline-block; font-size: 13px; font-weight: 500; color: var(--accent); border: 1px solid var(--line); border-radius: 4px; padding: 5px 12px; text-decoration: none; }
+footer { border-top: 1px solid var(--line); padding-top: 24px; font-family: var(--font-mono); font-size: 13px; color: var(--muted); }
+
+@media (max-width: 880px) {
+  .hero { grid-template-columns: minmax(0, 1fr); gap: 40px; padding-block: 48px 48px; }
+  .about, .cols { grid-template-columns: minmax(0, 1fr); gap: 32px; }
+  .skills { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .contact { grid-template-columns: minmax(0, 1fr); }
+  .job { grid-template-columns: minmax(0, 1fr); gap: 10px; }
+}
+@media (max-width: 560px) {
+  .skills { grid-template-columns: minmax(0, 1fr); }
+  section { padding-block: 48px; }
+  nav { gap: 14px; margin-left: 0; order: 3; width: 100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .cursor { animation: none; }
+}
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#inicio" aria-label="Início / Home">guilherme<span>@</span>brasilia</a>
+    <nav data-aria-pt="Seções" data-aria-en="Sections" aria-label="Seções">
+      <a href="#sobre"><span data-l="pt">Sobre</span><span data-l="en">About</span></a>
+      <a href="#experiencia"><span data-l="pt">Experiência</span><span data-l="en">Experience</span></a>
+      <a href="#habilidades"><span data-l="pt">Habilidades</span><span data-l="en">Skills</span></a>
+      <a href="#formacao"><span data-l="pt">Formação</span><span data-l="en">Education</span></a>
+      <a href="#contato"><span data-l="pt">Contato</span><span data-l="en">Contact</span></a>
+    </nav>
+    <div class="lang" role="group" aria-label="Idioma / Language">
+      <button type="button" id="lang-pt" data-set="pt" aria-pressed="true" lang="pt">PT</button>
+      <button type="button" id="lang-en" data-set="en" aria-pressed="false" lang="en">EN</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap" id="inicio">
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Brasília, DF</p>
+      <h1><span data-l="pt">Infraestrutura de TI e Cibersegurança</span><span data-l="en">IT Infrastructure &amp; Cybersecurity</span></h1>
+      <p class="fullname">Guilherme Felisberto Rodrigues Almeida de Lima</p>
+      <p class="lead">
+        <span data-l="pt">Suporte técnico, administração de redes, firewalls e infraestrutura em nuvem.</span>
+        <span data-l="en">Technical support, network administration, firewall management and cloud infrastructure.</span>
+      </p>
+      <div class="actions">
+        <a class="btn primary" href="#experiencia"><span data-l="pt">Ver experiência</span><span data-l="en">View experience</span></a>
+        <a class="btn ghost" href="#contato"><span data-l="pt">Entrar em contato</span><span data-l="en">Get in touch</span></a>
+      </div>
+    </div>
+    <div class="term" role="img" data-aria-pt="Terminal com resumo do perfil profissional" data-aria-en="Terminal with a summary of the professional profile" aria-label="Terminal com resumo do perfil profissional">
+      <div class="term-bar"><i></i><i></i><i></i><span>bash</span></div>
+      <div class="term-body">
+        <p><span class="ps">$</span> whoami</p>
+        <p class="out"><span data-l="pt">Técnico de Suporte, Infraestrutura e Segurança</span><span data-l="en">IT Support, Infrastructure &amp; Security Technician</span></p>
+        <p><span class="ps">$</span> cat <span data-l="pt">clientesMirante.txt</span><span data-l="en">clientsMirante.txt</span></p>
+        <p class="out">Petrobras
+<span data-l="pt">Exército Brasileiro</span><span data-l="en">Brazilian Army</span>
+Sicoob</p>
+        <p><span class="ps">$</span> cat <span data-l="pt">foco.txt</span><span data-l="en">focus.txt</span></p>
+        <p class="out">Firewalls · Proxmox VE · VLAN
+ISO 27001 · LGPD · ITIL v4
+Linux · Zabbix · Grafana</p>
+        <p><span class="ps">$</span> <span class="cursor"></span></p>
+      </div>
+    </div>
+  </div>
+
+  <section id="sobre">
+    <div class="sec-head"><h2><span data-l="pt">Sobre</span><span data-l="en">About</span></h2><span class="sec-tag"><span data-l="pt">perfil</span><span data-l="en">profile</span></span></div>
+    <div class="about">
+      <div>
+        <p data-l="pt">Especialista em infraestrutura de TI e cibersegurança, com experiência prática em suporte técnico, administração de redes, gestão de firewalls e infraestrutura em nuvem.</p>
+        <p data-l="en">IT infrastructure and cybersecurity specialist with hands-on experience in technical support, network administration, firewall management and cloud infrastructure.</p>
+        <p data-l="pt">Entrego serviços de TI de nível corporativo para clientes de alto perfil. Aplico metodologias ITIL e Scrum e alinho sistemas à norma ISO 27001 e a frameworks de segurança da informação.</p>
+        <p data-l="en">I deliver enterprise-grade IT services to high-profile clients. I apply ITIL and Scrum methodologies and align systems with ISO 27001 and information security frameworks.</p>
+      </div>
+      <dl class="facts">
+        <div><dt><span data-l="pt">Atuação</span><span data-l="en">Focus</span></dt><dd><span data-l="pt">Suporte N1/N2, redes, servidores e segurança da informação</span><span data-l="en">L1/L2 support, networking, servers and information security</span></dd></div>
+        <div><dt><span data-l="pt">Graduação</span><span data-l="en">Degree</span></dt><dd><span data-l="pt">Ciência da Computação, 4º semestre, previsão em 2027</span><span data-l="en">Computer Science, 4th semester, expected 2027</span></dd></div>
+        <div><dt><span data-l="pt">Idiomas</span><span data-l="en">Languages</span></dt><dd><span data-l="pt">Português nativo, inglês intermediário e técnico</span><span data-l="en">Portuguese (native), English (intermediate and technical)</span></dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section id="experiencia">
+    <div class="sec-head"><h2><span data-l="pt">Experiência profissional</span><span data-l="en">Professional experience</span></h2><span class="sec-tag"><span data-l="pt">do mais recente ao mais antigo</span><span data-l="en">most recent first</span></span></div>
+    <ol class="timeline">
+      <li class="job">
+        <div class="when"><b><span data-l="pt">Abr 2026 – Atual</span><span data-l="en">Apr 2026 – Present</span></b>Brasília, DF<br><span class="now"><span data-l="pt">Atual</span><span data-l="en">Current</span></span></div>
+        <div>
+          <h3><span data-l="pt">Técnico de Suporte, Infraestrutura e Segurança de TI</span><span data-l="en">IT Support, Infrastructure &amp; Security Technician</span></h3>
+          <p class="org">Mirante Tecnologia</p>
+          <ul data-l="pt">
+            <li>Suporte técnico de alto nível, gestão de infraestrutura e operações de cibersegurança para clientes de grande porte, entre eles Petrobras, Exército Brasileiro e instituições financeiras como o Sicoob.</li>
+            <li>Atendimento técnico L1/L2, remoto e presencial, com cumprimento rigoroso de SLA em ambientes governamentais, corporativos e bancários de alta segurança.</li>
+            <li>Gestão da segurança de rede e da defesa de perímetro: configuração de firewalls, controles de acesso e regras de monitoramento para proteger dados críticos.</li>
+            <li>Administração, diagnóstico e manutenção de servidores físicos e virtuais (Proxmox VE e hypervisors) para maximizar disponibilidade.</li>
+            <li>Rotinas de infraestrutura de rede: configuração de LAN/VLAN, manutenção de switches e roteadores, cabeamento e roteamento IP básico.</li>
+            <li>Aplicação de protocolos de governança de dados e segurança da informação alinhados à ISO 27001, com auditorias de controle de acesso e mitigação de vulnerabilidades.</li>
+            <li>Administração de plataformas de e-mail corporativo e migrações entre Microsoft 365, Google Workspace e Locaweb.</li>
+          </ul>
+          <ul data-l="en">
+            <li>Provide high-tier technical support, infrastructure management and cybersecurity operations for enterprise-scale clients, including Petrobras, the Brazilian Army and major financial institutions such as Sicoob.</li>
+            <li>Deliver L1/L2 technical support (remote and on-site), ensuring strict SLA compliance in high-security government, corporate and banking environments.</li>
+            <li>Manage network security and perimeter defenses, configuring firewalls, access controls and monitoring rules to safeguard sensitive mission-critical data.</li>
+            <li>Administer, troubleshoot and maintain physical and virtual servers (Proxmox VE / hypervisors) to maximize uptime and availability.</li>
+            <li>Execute network infrastructure routines, including LAN/VLAN setup, switch/router maintenance, cabling and basic IP routing management.</li>
+            <li>Enforce data governance and information security protocols aligned with ISO 27001, running access control audits and vulnerability mitigations.</li>
+            <li>Oversee corporate email platform administration and migration workflows across Microsoft 365, Google Workspace and Locaweb.</li>
+          </ul>
+        </div>
+      </li>
+      <li class="job">
+        <div class="when"><b><span data-l="pt">Mar 2025 – Abr 2026</span><span data-l="en">Mar 2025 – Apr 2026</span></b>Brasília, DF</div>
+        <div>
+          <h3><span data-l="pt">Aprendiz Administrativo</span><span data-l="en">Administrative Apprentice</span></h3>
+          <p class="org">Direcional</p>
+          <ul>
+            <li><span data-l="pt">Apoio às operações administrativas, aos fluxos de documentação e às rotinas internas de entrada de dados.</span><span data-l="en">Supported administrative operations, documentation workflows and internal data entry routines.</span></li>
+          </ul>
+        </div>
+      </li>
+      <li class="job">
+        <div class="when"><b><span data-l="pt">Jan 2022 – Fev 2025</span><span data-l="en">Jan 2022 – Feb 2025</span></b>Brasília, DF</div>
+        <div>
+          <h3><span data-l="pt">Analista de Suporte de TI</span><span data-l="en">IT Support Analyst</span></h3>
+          <p class="org">TI Capital</p>
+          <ul data-l="pt">
+            <li>Suporte técnico completo, remoto e presencial, aos ambientes dos clientes, mantendo a continuidade operacional de infraestruturas de TI corporativas.</li>
+            <li>Configuração e monitoramento de políticas de firewall corporativas, protegendo o tráfego de rede e prevenindo violações externas.</li>
+            <li>Implantação, atualização e manutenção de hardware físico e de servidores virtualizados, reduzindo o tempo de indisponibilidade.</li>
+            <li>Implantação de práticas ITIL v4 e Scrum na estrutura do service desk, com ganho de eficiência na resolução de incidentes pela equipe de suporte.</li>
+            <li>Criação de protocolos de proteção de dados conforme as normas ISO 27000/27001 e a LGPD para diversos clientes B2B.</li>
+            <li>Gestão de domínios de e-mail multi-tenant e de controles de acesso de usuários em Zoho, Locaweb, Microsoft 365 e Gmail.</li>
+          </ul>
+          <ul data-l="en">
+            <li>Provided end-to-end remote and on-site technical support for client environments, maintaining operational continuity for enterprise IT infrastructures.</li>
+            <li>Configured and monitored enterprise firewall policies, securing network traffic and preventing external security breaches.</li>
+            <li>Deployed, updated and maintained physical hardware and virtualized server environments, reducing system downtime.</li>
+            <li>Implemented ITIL v4 and Scrum practices to structure help desk ticketing processes, improving incident resolution efficiency across the support team.</li>
+            <li>Designed and established data protection protocols in compliance with ISO 27000/27001 frameworks and Brazilian LGPD regulations for multiple B2B clients.</li>
+            <li>Managed multi-tenant email domains and user access controls across Zoho, Locaweb, Microsoft 365 and Gmail.</li>
+          </ul>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section id="habilidades">
+    <div class="sec-head"><h2><span data-l="pt">Habilidades técnicas</span><span data-l="en">Technical skills</span></h2><span class="sec-tag">stack</span></div>
+    <div class="skills">
+      <div class="group">
+        <h3><span data-l="pt">Infraestrutura e redes</span><span data-l="en">Infrastructure &amp; networking</span></h3>
+        <ul class="chips">
+          <li><span data-l="pt">Servidores físicos e virtuais (Proxmox VE)</span><span data-l="en">Physical &amp; virtual servers (Proxmox VE)</span></li>
+          <li>Firewalls</li>
+          <li><span data-l="pt">Roteamento LAN/VLAN</span><span data-l="en">LAN/VLAN routing</span></li>
+          <li><span data-l="pt">Manutenção de hardware</span><span data-l="en">Hardware maintenance</span></li>
+        </ul>
+      </div>
+      <div class="group">
+        <h3><span data-l="pt">Segurança e conformidade</span><span data-l="en">Security &amp; compliance</span></h3>
+        <ul class="chips">
+          <li>ISO 27001</li>
+          <li>LGPD</li>
+          <li><span data-l="pt">Ethical Hacking e Pentest</span><span data-l="en">Ethical hacking &amp; pentesting</span></li>
+          <li><span data-l="pt">Controle de acesso</span><span data-l="en">Access control</span></li>
+          <li><span data-l="pt">Segurança de perímetro</span><span data-l="en">Perimeter security</span></li>
+        </ul>
+      </div>
+      <div class="group new">
+        <h3><span data-l="pt">Linux e monitoramento</span><span data-l="en">Linux &amp; monitoring</span></h3>
+        <ul class="chips">
+          <li><span data-l="pt">Comandos do Linux</span><span data-l="en">Linux commands</span></li>
+          <li><span data-l="pt">Instalação e fundamentos do Zabbix e Grafana</span><span data-l="en">Zabbix and Grafana installation and fundamentals</span></li>
+        </ul>
+      </div>
+      <div class="group">
+        <h3><span data-l="pt">Nuvem e administração de domínios</span><span data-l="en">Cloud &amp; domain administration</span></h3>
+        <ul class="chips">
+          <li>Oracle Cloud Infrastructure (OCI)</li>
+          <li>Microsoft 365</li>
+          <li>Google Workspace</li>
+          <li>Zoho</li>
+          <li>Locaweb</li>
+        </ul>
+      </div>
+      <div class="group">
+        <h3><span data-l="pt">Metodologias e ferramentas</span><span data-l="en">Methodologies &amp; tools</span></h3>
+        <ul class="chips">
+          <li>ITIL v4</li>
+          <li>Scrum</li>
+          <li><span data-l="pt">Git e GitHub</span><span data-l="en">Git &amp; GitHub</span></li>
+          <li>Python</li>
+          <li><span data-l="pt">Sistemas de help desk</span><span data-l="en">Help desk ticket systems</span></li>
+        </ul>
+      </div>
+      <div class="group">
+        <h3><span data-l="pt">Idiomas</span><span data-l="en">Languages</span></h3>
+        <ul class="chips">
+          <li><span data-l="pt">Português (nativo)</span><span data-l="en">Portuguese (native)</span></li>
+          <li><span data-l="pt">Inglês (intermediário e técnico)</span><span data-l="en">English (intermediate / technical)</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="formacao">
+    <div class="sec-head"><h2><span data-l="pt">Formação e certificações</span><span data-l="en">Education &amp; certifications</span></h2><span class="sec-tag"><span data-l="pt">credenciais verificáveis</span><span data-l="en">verifiable credentials</span></span></div>
+    <div class="cols">
+      <div>
+        <h3><span data-l="pt">Formação</span><span data-l="en">Education</span></h3>
+        <ul class="rows">
+          <li><strong><span data-l="pt">Bacharelado em Ciência da Computação</span><span data-l="en">B.S. in Computer Science</span></strong><span class="meta">UDF Centro Universitário</span><span class="meta"><span data-l="pt">4º semestre, formatura prevista para 2027</span><span data-l="en">4th semester, expected graduation 2027</span></span></li>
+          <li><strong><span data-l="pt">Análise e Desenvolvimento de Sistemas</span><span data-l="en">Software Analysis and Development</span></strong><span class="meta"><span data-l="pt">IESB Instituto de Educação Superior de Brasília</span><span data-l="en">IESB, Instituto de Educação Superior de Brasília</span></span><span class="meta"><span data-l="pt">Disciplinas concluídas até o 3º semestre</span><span data-l="en">Coursework completed up to the 3rd semester</span></span></li>
+        </ul>
+      </div>
+      <div>
+        <h3><span data-l="pt">Certificações e cursos</span><span data-l="en">Certifications &amp; training</span></h3>
+        <ul class="rows">
+          <li><strong><span data-l="pt">Zabbix e Grafana</span><span data-l="en">Zabbix and Grafana</span></strong><span class="meta">Fórum Telecom, 2026</span><span class="meta"><a href="https://hotmart.com/pt-br/club/forum-telecom-infinito/product/4712790/certificate/ad228a6a-99fb-4f50-8082-f91728f64568--1971768152/validate" target="_blank" rel="noopener noreferrer"><span data-l="pt">Validar certificado</span><span data-l="en">Validate certificate</span></a></span></li>
+          <li><strong>SCRUM Foundation Professional Certificate (SFPC)</strong><span class="meta">CertiProf</span><code><span data-l="pt">Credencial</span><span data-l="en">Credential</span> 78988535</code></li>
+          <li><strong>Pentest / Ethical Hacking Professional</strong><span class="meta">Desec Security</span><code><span data-l="pt">Credencial</span><span data-l="en">Credential</span> YFGO-SAUHX-XRSA</code></li>
+          <li><strong><span data-l="pt">Network Security Expert (NSE 1, 2 e 3)</span><span data-l="en">Network Security Expert (NSE 1, 2 &amp; 3)</span></strong><span class="meta">Fortinet</span><code>DdMpzRcvx2 / V2MHmOnTJR / TBZjchdKTw</code></li>
+          <li><strong>Oracle Cloud Infrastructure (OCI)</strong><span class="meta">Alura, 2024</span></li>
+          <li><strong><span data-l="pt">Virtualização com Proxmox VE</span><span data-l="en">Proxmox VE Virtualization</span></strong><span class="meta">Udemy, 2024</span></li>
+          <li><strong><span data-l="pt">Fundamentos da Linguagem Python</span><span data-l="en">Python Language Fundamentals</span></strong><span class="meta">Estudonauta, 2023</span></li>
+          <li><strong><span data-l="pt">Git e GitHub, controle de versão</span><span data-l="en">Git &amp; GitHub Version Control</span></strong><span class="meta">Estudonauta, 2023</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="contato">
+    <div class="sec-head"><h2><span data-l="pt">Contato</span><span data-l="en">Contact</span></h2><span class="sec-tag"><span data-l="pt">vamos conversar</span><span data-l="en">let's talk</span></span></div>
+    <div class="contact">
+      <div class="card"><small><span data-l="pt">E-mail</span><span data-l="en">Email</span></small><p id="v-email">guilhermer.felisberto06@gmail.com.br</p><button class="copy" type="button" data-target="v-email" data-pt="Copiar e-mail" data-en="Copy email">Copiar e-mail</button></div>
+      <div class="card"><small>LinkedIn</small><p id="v-in">linkedin.com/in/guilherme-f-a0609424a</p><a class="linkbtn" href="https://www.linkedin.com/in/guilherme-f-a0609424a/" target="_blank" rel="noopener noreferrer"><span data-l="pt">Abrir perfil</span><span data-l="en">Open profile</span></a></div>
+      <div class="card"><small><span data-l="pt">Localização</span><span data-l="en">Location</span></small><p id="v-loc"><span data-l="pt">Brasília, DF, Brasil</span><span data-l="en">Brasília, DF, Brazil</span></p><button class="copy" type="button" data-target="v-loc" data-pt="Copiar" data-en="Copy">Copiar</button></div>
+    </div>
+  </section>
+
+  <footer>Guilherme Felisberto Rodrigues Almeida de Lima · Brasília, DF</footer>
+</main>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  var msgs = {
+    pt: { ok: 'Copiado', fail: 'Selecione o texto' },
+    en: { ok: 'Copied', fail: 'Select the text' }
+  };
+  var current = 'pt';
+
+  function setLang(lang, save) {
+    current = lang === 'en' ? 'en' : 'pt';
+    root.setAttribute('data-lang', current);
+    root.setAttribute('lang', current === 'en' ? 'en' : 'pt-BR');
+    document.getElementById('lang-pt').setAttribute('aria-pressed', current === 'pt' ? 'true' : 'false');
+    document.getElementById('lang-en').setAttribute('aria-pressed', current === 'en' ? 'true' : 'false');
+    document.querySelectorAll('[data-aria-pt]').forEach(function (el) {
+      el.setAttribute('aria-label', el.getAttribute('data-aria-' + current));
+    });
+    document.querySelectorAll('.copy').forEach(function (b) {
+      b.textContent = b.getAttribute('data-' + current);
+    });
+    if (save) {
+      try { localStorage.setItem('site-lang', current); } catch (e) {}
+    }
+  }
+
+  document.querySelectorAll('.lang button').forEach(function (b) {
+    b.addEventListener('click', function () { setLang(b.getAttribute('data-set'), true); });
+  });
+
+  var start = 'pt';
+  try {
+    var saved = localStorage.getItem('site-lang');
+    if (saved === 'en' || saved === 'pt') { start = saved; }
+    else if ((navigator.language || '').toLowerCase().indexOf('pt') !== 0) { start = 'en'; }
+  } catch (e) {}
+  setLang(start, false);
+
+  document.querySelectorAll('.copy').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var el = document.getElementById(btn.dataset.target);
+      var text = Array.prototype.map.call(el.querySelectorAll('[data-l]'), function (n) {
+        return n.getAttribute('data-l') === current ? n.textContent : '';
+      }).join('').trim() || el.textContent.trim();
+      function done(ok) {
+        btn.textContent = ok ? msgs[current].ok : msgs[current].fail;
+        setTimeout(function () { btn.textContent = btn.getAttribute('data-' + current); }, 1800);
+      }
+      function fallback() {
+        try {
+          var r = document.createRange();
+          r.selectNodeContents(el);
+          var s = window.getSelection();
+          s.removeAllRanges();
+          s.addRange(r);
+        } catch (e) {}
+        done(false);
+      }
+      try {
+        navigator.clipboard.writeText(text).then(function () { done(true); }, fallback);
+      } catch (e) { fallback(); }
+    });
+  });
+})();
+</script>
+
+</body></html>

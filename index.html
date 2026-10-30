@@ -213,13 +213,15 @@ h2 { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.7rem
 .copy { font: inherit; font-size: 13px; font-weight: 500; background: transparent; color: var(--accent); border: 1px solid var(--line); border-radius: 4px; padding: 5px 12px; cursor: pointer; }
 .copy:hover, .linkbtn:hover { border-color: var(--accent); }
 .linkbtn { display: inline-block; font-size: 13px; font-weight: 500; color: var(--accent); border: 1px solid var(--line); border-radius: 4px; padding: 5px 12px; text-decoration: none; }
+.contact.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.card .desc { color: var(--muted); font-size: 15px; user-select: auto; }
 footer { border-top: 1px solid var(--line); padding-top: 24px; font-family: var(--font-mono); font-size: 13px; color: var(--muted); }
 
 @media (max-width: 880px) {
   .hero { grid-template-columns: minmax(0, 1fr); gap: 40px; padding-block: 48px 48px; }
   .about, .cols { grid-template-columns: minmax(0, 1fr); gap: 32px; }
   .skills { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .contact { grid-template-columns: minmax(0, 1fr); }
+  .contact, .contact.two { grid-template-columns: minmax(0, 1fr); }
   .job { grid-template-columns: minmax(0, 1fr); gap: 10px; }
 }
 @media (max-width: 560px) {
@@ -246,6 +248,7 @@ footer { border-top: 1px solid var(--line); padding-top: 24px; font-family: var(
       <a href="#experiencia"><span data-l="pt">Experiência</span><span data-l="en">Experience</span></a>
       <a href="#habilidades"><span data-l="pt">Habilidades</span><span data-l="en">Skills</span></a>
       <a href="#formacao"><span data-l="pt">Formação</span><span data-l="en">Education</span></a>
+      <a href="#github">GitHub</a>
       <a href="#contato"><span data-l="pt">Contato</span><span data-l="en">Contact</span></a>
     </nav>
     <div class="lang" role="group" aria-label="Idioma / Language">
@@ -450,6 +453,24 @@ Linux · Zabbix · Grafana</p>
           <li><strong><span data-l="pt">Fundamentos da Linguagem Python</span><span data-l="en">Python Language Fundamentals</span></strong><span class="meta">Estudonauta, 2023</span></li>
           <li><strong><span data-l="pt">Git e GitHub, controle de versão</span><span data-l="en">Git &amp; GitHub Version Control</span></strong><span class="meta">Estudonauta, 2023</span></li>
         </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="github">
+    <div class="sec-head"><h2>GitHub</h2><span class="sec-tag"><span data-l="pt">código e projetos</span><span data-l="en">code and projects</span></span></div>
+    <div class="contact two">
+      <div class="card">
+        <small><span data-l="pt">Perfil</span><span data-l="en">Profile</span></small>
+        <p id="v-gh">github.com/GuilhermeFelisberto12</p>
+        <p class="desc"><span data-l="pt">Meus repositórios, estudos e projetos de infraestrutura, segurança e desenvolvimento.</span><span data-l="en">My repositories, studies and projects in infrastructure, security and development.</span></p>
+        <a class="linkbtn" href="https://github.com/GuilhermeFelisberto12" target="_blank" rel="noopener noreferrer"><span data-l="pt">Abrir perfil</span><span data-l="en">Open profile</span></a>
+      </div>
+      <div class="card">
+        <small><span data-l="pt">Repositório deste site</span><span data-l="en">This site's repository</span></small>
+        <p>Projeto_Site</p>
+        <p class="desc"><span data-l="pt">Código-fonte deste site profissional, aberto e público.</span><span data-l="en">Source code of this professional site, open and public.</span></p>
+        <a class="linkbtn" href="https://github.com/GuilhermeFelisberto12/Projeto_Site" target="_blank" rel="noopener noreferrer"><span data-l="pt">Ver código</span><span data-l="en">View code</span></a>
       </div>
     </div>
   </section>
